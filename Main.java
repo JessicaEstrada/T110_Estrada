@@ -1,67 +1,76 @@
 import java.util.Scanner;
 
 public class Main {
-	static DataClass data = new DataClass(); 
-	static Scanner scan = new Scanner(System.in);
-	static Scanner scan2 = new Scanner(System.in);
-	
+	static Scanner scan = new Scanner(System.in); 
+	static DataClass obj = new DataClass(); 
+
+
 	public static void main(String[] args) {
-		
-		printScan(); 
-		data.printAllData(); 
-		
-		printScan(); 
-		printAllData2(); 
-		
+		printInstruc(); 
+		askInputs(); 
+		obj.printAnswer(); 
+
+		while(obj.getChoiceValue() != 0) {
+			printInstruc(); 
+			askInputs(); 
+			printAnswer2(); 
+		}
+
 		scan.close();
 	}
-	
-	static void printAllData2() {
-		System.out.println("\n\n-Personal Data-");
-		System.out.println("Full Name    : " + data.getName());
-		System.out.println("Age          : " + data.getAge());
-		System.out.println("Phone Number : " + data.getNumber());
-		System.out.println("Address      : " + data.getAdress());
-		
-		System.out.println("\n-Student Grades-");
-		System.out.println("P.E     : " + data.getpPEGrade());
-		System.out.println("History : " + data.getHistoryGrade());
-		System.out.println("English : " + data.getEnglishGrade());
-		System.out.println("Sciende : " + data.getScienceGrade());
-		System.out.println("Math    : " + data.getMathGrade());
-		System.out.println("----------------------------------------------------------------------------\n");
+
+	static void printAnswer2() {
+		if(obj.getChoiceValue() == 0) {
+			System.out.println("Program Terminated");
+		} else if(obj.getChoiceValue() == 1) {
+			System.out.println("The Area of Triangle is : " + obj.getTriangleArea());
+		} else if(obj.getChoiceValue() == 2) {
+			System.out.println("The Area of Triangle is : " + obj.getRectangleArea());
+		} else if(obj.getChoiceValue() == 3) {
+			System.out.println("The Area of Triangle is : " + obj.getParrallelogramArea());
+		} else if(obj.getChoiceValue() == 4) {
+			System.out.println("The Area of Triangle is : " + obj.getCircleArea());
+		} else {
+			System.out.println("Error!");
+		}
+		System.out.println("------------------------------------------------------------------\n");
 	}
-	
-	static void printScan() {
-		System.out.println("[Personal Data]");
-		System.out.print("Full Name : ");
-		data.insertStr(scan2.nextLine());
-		
-		System.out.print("Phone Number : ");
-		data.insertStr(scan2.nextLine());
-		
-		System.out.print("Address : ");
-		data.insertStr(scan2.nextLine());
-		
-		System.out.print("Age : ");
-		data.insertData(scan.nextInt());
-		
-		System.out.println("\n[Input Grades]");
-		System.out.print("Math    : ");
-		data.insertData(scan.nextInt());
-		
-		System.out.print("Science : ");
-		data.insertData(scan.nextInt());
-		
-		System.out.print("Englsih : ");
-		data.insertData(scan.nextInt());
-		
-		System.out.print("History : ");
-		data.insertData(scan.nextInt());
-		
-		System.out.print("P.E     : ");
-		data.insertData(scan.nextInt());
-		data.resetIJ();
+
+	static void askInputs() {
+		obj.choice(scan.nextInt());
+
+		if(obj.getChoiceValue() == 1) {
+			System.out.println("[Solving The Area Of Triangle]");
+			System.out.print("Input Base : ");
+			obj.setValue1(scan.nextDouble());
+			System.out.print("Input Height : ");
+			obj.setValue2(scan.nextDouble());
+		} else if(obj.getChoiceValue() == 2) {
+			System.out.println("[Solving The Area Of Rectangle]");
+			System.out.print("Input Legnth : ");
+			obj.setValue1(scan.nextDouble());
+			System.out.print("Input Height : ");
+			obj.setValue2(scan.nextDouble());
+		} else if(obj.getChoiceValue() == 3) {
+			System.out.println("[Solving The Area Of Parrallelogram]");
+			System.out.print("Input Base : ");
+			obj.setValue1(scan.nextDouble());
+			System.out.print("Input Height : ");
+			obj.setValue2(scan.nextDouble());
+		}  else if(obj.getChoiceValue() == 4) {
+			System.out.println("[Solving The Area Of Circle]");
+			System.out.print("Input Radius : ");
+			obj.setValue1(scan.nextDouble());;
+		}
 	}
-	
+
+	static void printInstruc() {
+		System.out.println("--Area of Geometry shapes--");
+		System.out.println("[0] To exit");
+		System.out.println("[1] Triangle");
+		System.out.println("[2] Rectangle");
+		System.out.println("[3] Parrallelogram");
+		System.out.println("[4] Circle");
+		System.out.print("\nChoice : ");
+	}
 }
